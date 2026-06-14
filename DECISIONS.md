@@ -1,8 +1,7 @@
-\# Architecture and Engineering Decisions
+# Architecture and Engineering Decisions
 
 
-
-\## 1. Overview
+## 1. Overview
 
 
 
@@ -10,15 +9,15 @@ This project is a data pipeline designed to collect, process, and provide access
 
 
 
-\---
+---
 
 
 
-\## 2. Data Extraction and Ingestion
+## 2. Data Extraction and Ingestion
 
 
 
-\### Decision
+### Decision
 
 
 
@@ -26,7 +25,7 @@ Data is collected automatically from the World Bank API using Python rather than
 
 
 
-\### Reasoning
+### Reasoning
 
 
 
@@ -34,7 +33,7 @@ Manual uploads can introduce errors and make it difficult to keep the data up to
 
 
 
-\### Reliability
+### Reliability
 
 
 
@@ -42,9 +41,9 @@ The ingestion process includes:
 
 
 
-\* Basic schema validation
+* Basic schema validation
 
-\* Logging of row counts during data loading
+* Logging of row counts during data loading
 
 
 
@@ -52,11 +51,11 @@ These checks help identify problems with the API or incoming data before they af
 
 
 
-\---
+---
 
 
 
-\## 3. Data Transformation (dbt)
+## 3. Data Transformation (dbt)
 
 
 
@@ -64,21 +63,21 @@ The transformation process follows a three-layer structure.
 
 
 
-\### Staging Layer (`staging/`)
+### Staging Layer (`staging/`)
 
 
 
-\*\*Purpose\*\*
+**Purpose**
 
 
 
-\* Convert data types into the correct format
+* Convert data types into the correct format
 
-\* Standardise column names using `snake\_case`
+* Standardise column names using `snake\_case`
 
 
 
-\*\*Reasoning\*\*
+**Reasoning**
 
 
 
@@ -86,23 +85,23 @@ This layer separates the raw source data from the rest of the pipeline. If the s
 
 
 
-\### Intermediate Layer (`intermediate/`)
+### Intermediate Layer (`intermediate/`)
 
 
 
-\*\*Purpose\*\*
+**Purpose**
 
 
 
-\* Reshape data
+* Reshape data
 
-\* Apply more complex SQL transformations
+* Apply more complex SQL transformations
 
-\* Convert data from long format to wide format
+* Convert data from long format to wide format
 
 
 
-\*\*Reasoning\*\*
+**Reasoning**
 
 
 
@@ -110,21 +109,21 @@ Keeping transformation logic in a separate layer makes the project easier to mai
 
 
 
-\### Marts Layer (`marts/`)
+### Marts Layer (`marts/`)
 
 
 
-\*\*Purpose\*\*
+**Purpose**
 
 
 
-\* Create business-ready datasets
+* Create business-ready datasets
 
-\* Support reporting tools such as Superset and Power BI
+* Support reporting tools such as Superset and Power BI
 
 
 
-\*\*Reasoning\*\*
+**Reasoning**
 
 
 
@@ -132,29 +131,28 @@ This layer provides the final datasets used for analysis and reporting. It serve
 
 
 
-\---
+---
 
 
 
-\## 4. Materialisation Strategy
+## 4. Materialisation Strategy
 
 
 
-\### Views
+### Views
 
 
 
-\*\*Used for\*\*
+**Used for**
 
 
 
-\* Staging models
+* Staging models
 
-\* Intermediate models
+* Intermediate models
 
 
-
-\*\*Reasoning\*\*
+**Reasoning**
 
 
 
@@ -162,19 +160,19 @@ Views reduce storage requirements and always reflect the latest source data with
 
 
 
-\### Tables
+### Tables
 
 
 
-\*\*Planned for\*\*
+**Planned for**
 
 
 
-\* Marts models as the project grows
+* Marts models as the project grows
 
 
 
-\*\*Reasoning\*\*
+**Reasoning**
 
 
 
@@ -182,15 +180,15 @@ Tables improve performance for dashboards and reports because the final datasets
 
 
 
-\---
+---
 
 
 
-\## 5. Future Scalability Considerations
+## 5. Future Scalability Considerations
 
 
 
-\### Testing
+### Testing
 
 
 
@@ -198,9 +196,9 @@ The project includes dbt tests such as:
 
 
 
-\* `not\_null`
+* `not\_null`
 
-\* `unique`
+* `unique`
 
 
 
@@ -208,7 +206,7 @@ These tests help ensure that important data quality rules are met and that issue
 
 
 
-\### Observability
+### Observability
 
 
 
@@ -220,13 +218,13 @@ This makes it easier to:
 
 
 
-\* Understand data dependencies
+* Understand data dependencies
 
-\* Trace errors back to their source
+* Trace errors back to their source
 
-\* Assess the impact of changes
+* Assess the impact of changes
 
-\* Maintain the project as it grows
+* Maintain the project as it grows
 
 
 
