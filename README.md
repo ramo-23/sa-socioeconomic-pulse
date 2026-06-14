@@ -44,7 +44,7 @@ dbt is used for transformations across three layers:
 
 
 
-!\[Lineage Graph](./images/lineage\_graph.png)
+!\[test](https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock\_big.jpg)
 
 
 
