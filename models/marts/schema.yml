@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: mart_economic_comparison
+    description: "Final mart for cross-country socioeconomic indicators."
+    columns:
+      - name: country_name
+        description: "ISO country name."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['South Africa', 'Brazil', 'Nigeria']
+      - name: report_year
+        description: "The calendar year of the data point."
+        tests:
+          - not_null
+      - name: gdp_usd
+        description: "GDP in current USD."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0

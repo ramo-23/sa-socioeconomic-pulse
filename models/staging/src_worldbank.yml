@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw_stats_sa
+    database: sa-socioeconomic-pulse
+    schema: bronze
+    tables:
+      - name: raw_worldbank_data

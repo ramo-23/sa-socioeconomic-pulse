@@ -1,0 +1,6 @@
+dbt-bigquery 
+google-cloud-bigquery 
+pandas
+openpyxl
+tabula-py 
+pdfplumber

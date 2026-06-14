@@ -1,0 +1,16 @@
+name: 'sa_socioeconomic_pulse'
+version: '1.0.0'
+config-version: 2
+
+profile: 'bigquery_profile'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+
+models:
+  sa_socioeconomic_pulse:
+    staging:
+      +materialized: view
