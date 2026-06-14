@@ -1,41 +1,27 @@
 ## Project Architecture
 
-
-
 The SA Socioeconomic Pulse project follows an ELT (Extract, Load, Transform) approach to collect, store, and prepare macroeconomic data for analysis and reporting. The architecture separates data ingestion, storage, and transformation into distinct stages, making the pipeline easier to maintain and extend.
-
 
 
 ### 1. Extraction
 
-
-
 Data is extracted directly from the World Bank Open Data API using Python scripts. Automating the extraction process removes the need for manual data downloads and ensures that the latest data can be retrieved consistently whenever the pipeline is run.
-
 
 
 ### 2. Storage
 
 
-
 Raw data is loaded into Google BigQuery, where it moves through a series of layers:
 
 
-
 | Layer | Description |
-
 |-------|-------------|
-
 | **Bronze** | Raw data as received from the API |
-
 | **Staging** | Cleaned and standardised data with consistent naming conventions and data types |
-
 | **Marts** | Final business-ready datasets designed for reporting and analysis |
 
 
-
 This layered approach preserves the original source data while providing structured datasets for downstream use.
-
 
 
 ### 3. Transformation
@@ -47,13 +33,9 @@ Data transformations are managed using dbt and follow a three-layer model:
 
 
 | Layer | Description |
-
 |-------|-------------|
-
 | **Staging** | Cleans and standardises incoming data |
-
 | **Intermediate** | Applies reshaping and transformation logic |
-
 | **Marts** | Produces final datasets for dashboards, reports, and analytical use cases |
 
 
